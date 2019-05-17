@@ -3,6 +3,7 @@
 
 #include "engine.h"
 #include "battery.h"
+#include "tire.h"
 class Warehouse{
 public:
 
