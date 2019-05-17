@@ -1,4 +1,4 @@
-#ifndef _BATTERY_H
+#ifndef _BATTERY_H_
 #define _BATTERY_H_
 
 #include "part.h"
