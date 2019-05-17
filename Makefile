@@ -9,15 +9,16 @@ TEST:= test
 
 .DEFAULT_GOAL :=  $(BIN)/main
 
-$(BIN)/main: $(BUILD) $(BIN) $(BUILD)/main.o
+$(BIN)/main: $(BUILD) $(BIN) $(BUILD)/main.o $(BUILD)/car.o
 	g++ $(BUILD)/main.o -o $(BIN)/main
-
+#directories
 $(BUILD):
 	$(MKDIR_P) $(BUILD)
 
 $(BIN):
 	$(MKDIR_P) $(BIN)
 
+#main
 $(BUILD)/main.o: $(SRC)/main.cpp
 	g++ $(CPPFLAGS) -c $(SRC)/main.cpp -o $(BUILD)/main.o
 
@@ -42,6 +43,8 @@ $(BUILD)/factory.o: $(SRC)/factory.cpp $(INCLUDE)/factory.h
 	g++ $(CPPFLAGS) -c $(SRC)/factory.cpp -o $(BUILD)/factory.o
 
 #car
+$(BUILD)/car.o: $(BUILD)/tire.o $(BUILD)/engine.o $(BUILD)/battery.o $(SRC)/car.cpp $(INCLUDE)/car.h
+	g++ $(CPPFLAGS) -c $(SRC)/car.cpp -o $(BUILD)/car.o
 
 #parts
 $(BUILD)/tire.o: $(BUILD)/part.o $(SRC)/tire.cpp $(INCLUDE)/tire.h
@@ -55,9 +58,6 @@ $(BUILD)/battery.o: $(BUILD)/part.o $(SRC)/battery.cpp $(INCLUDE)/battery.h
 
 $(BUILD)/part.o: $(SRC)/part.cpp $(INCLUDE)/part.h
 	g++ $(CPPFLAGS) -c $(SRC)/part.cpp -o $(BUILD)/part.o
-
-
-#factories
 
 
 #####CLEAN#####
