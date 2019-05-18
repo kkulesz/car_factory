@@ -20,6 +20,10 @@ public:
     Car* getCar();
 
     bool enoughPartsToProduceCar();
+    int getFrameNumber(){return numOfFrames_; };
+    int getEngineNumber(){ return numOfEngines_; };
+    int getBatteryNumer(){ return numOfBatteries_; };
+    int getCarNumber(){ return numOfCars_; };
 
 private:
     std::forward_list<Frame*> frames_;

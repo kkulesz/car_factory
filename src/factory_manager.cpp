@@ -29,3 +29,10 @@ bool FactoryManager::produceCar( Car::Colour carColour ){
         return false;
     }
 }
+
+void FactoryManager::getNumbers( int& carNumber, int& frameNumber, int& engineNumber, int& batteryNumber ){
+    carNumber = itsWarehouse_.getCarNumber();
+    frameNumber = itsWarehouse_.getFrameNumber();
+    engineNumber = itsWarehouse_.getEngineNumber();
+    batteryNumber = itsWarehouse_.getBatteryNumer();
+}

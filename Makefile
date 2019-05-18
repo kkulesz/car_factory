@@ -1,5 +1,5 @@
-CPPFLAGS := -Wall -g -Iinclude -Isrc
-
+CPPFLAGS := -Wall -g -Iinclude -Isrc -Ilib/SFML/include/
+SFMLLIBS := -lsfml-system -lsfml-window -lsfml-graphics
 INCLUDE := include
 SRC := src
 BIN := bin
@@ -10,7 +10,7 @@ TEST:= test
 .DEFAULT_GOAL :=  $(BIN)/main
 
 $(BIN)/main: $(BUILD) $(BIN) $(BUILD)/main.o
-	g++ $(BUILD)/part.o $(BUILD)/battery.o $(BUILD)/engine.o $(BUILD)/frame.o $(BUILD)/car.o  $(BUILD)/factory.o $(BUILD)/battery_factory.o $(BUILD)/engine_factory.o $(BUILD)/frame_factory.o $(BUILD)/car_factory.o $(BUILD)/warehouse.o $(BUILD)/factory_manager.o $(BUILD)/main.o -o $(BIN)/main
+	g++ $(BUILD)/part.o $(BUILD)/battery.o $(BUILD)/engine.o $(BUILD)/frame.o $(BUILD)/car.o  $(BUILD)/factory.o $(BUILD)/battery_factory.o $(BUILD)/engine_factory.o $(BUILD)/frame_factory.o $(BUILD)/car_factory.o $(BUILD)/warehouse.o $(BUILD)/factory_manager.o $(BUILD)/main.o -o $(BIN)/main $(SFMLLIBS)
 #directories
 $(BUILD):
 	$(MKDIR_P) $(BUILD)
