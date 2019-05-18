@@ -1,5 +1,5 @@
 #include <iostream>
-#include "car_factory.h"
+#include "factory_manager.h"
 int main(){
     Warehouse* mag = new Warehouse();
     Engine* silnik = new Engine();

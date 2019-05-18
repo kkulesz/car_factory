@@ -10,7 +10,7 @@ TEST:= test
 .DEFAULT_GOAL :=  $(BIN)/main
 
 $(BIN)/main: $(BUILD) $(BIN) $(BUILD)/main.o
-	g++ $(BUILD)/car.o $(BUILD)/warehouse.o $(BUILD)/main.o -o $(BIN)/main
+	g++ $(BUILD)/part.o $(BUILD)/battery.o $(BUILD)/engine.o $(BUILD)/frame.o $(BUILD)/car.o  $(BUILD)/factory.o $(BUILD)/battery_factory.o $(BUILD)/engine_factory.o $(BUILD)/frame_factory.o $(BUILD)/car_factory.o $(BUILD)/warehouse.o $(BUILD)/factory_manager.o $(BUILD)/main.o -o $(BIN)/main
 #directories
 $(BUILD):
 	$(MKDIR_P) $(BUILD)
@@ -19,11 +19,18 @@ $(BIN):
 	$(MKDIR_P) $(BIN)
 
 #main
-$(BUILD)/main.o: $(SRC)/main.cpp $(BUILD)/warehouse.o
+$(BUILD)/main.o: $(SRC)/main.cpp $(BUILD)/factory_manager.o
 	g++ $(CPPFLAGS) -c $(SRC)/main.cpp -o $(BUILD)/main.o
+#manager
+$(BUILD)/factory_manager.o: $(BUILD)/battery_factory.o $(BUILD)/engine_factory.o $(BUILD)/frame_factory.o $(BUILD)/car_factory.o $(BUILD)/warehouse.o $(SRC)/factory_manager.cpp $(INCLUDE)/factory_manager.h
+	g++ $(CPPFLAGS) -c $(SRC)/factory_manager.cpp -o $(BUILD)/factory_manager.o
+
+#warehouse
+$(BUILD)/warehouse.o: $(BUILD)/car.o $(SRC)/warehouse.cpp $(INCLUDE)/warehouse.h 
+	g++ $(CPPFLAGS) -c $(SRC)/warehouse.cpp -o $(BUILD)/warehouse.o
 
 #factories
-$(BUILD)/car_factory.o: $(BUILD)/frame_factory.o $(BUILD)/engine_factory.o $(BUILD)/battery_factory.o $(SRC)/car_factory.cpp $(INCLUDE)/car_factory.h $(BUILD)/warehouse.o
+$(BUILD)/car_factory.o: $(BUILD)/frame.o $(BUILD)/engine.o $(BUILD)/battery.o $(SRC)/car_factory.cpp $(INCLUDE)/car_factory.h $(BUILD)/warehouse.o
 	g++ $(CPPFLAGS) -c $(SRC)/car_factory.cpp -o $(BUILD)/car_factory.o
 
 $(BUILD)/frame_factory.o: $(BUILD)/factory.o $(SRC)/frame_factory.cpp $(INCLUDE)/frame_factory.h
@@ -33,14 +40,10 @@ $(BUILD)/engine_factory.o: $(BUILD)/factory.o $(SRC)/engine_factory.cpp $(INCLUD
 	g++ $(CPPFLAGS) -c $(SRC)/engine_factory.cpp -o $(BUILD)/engine_factory.o
 
 $(BUILD)/battery_factory.o: $(BUILD)/factory.o $(SRC)/battery_factory.cpp $(INCLUDE)/battery_factory.h
-	g++ $(CPPFLAGS) -c $(SRC)/battery_factory.cpp -o $(BUILD)/batter_factory.o
+	g++ $(CPPFLAGS) -c $(SRC)/battery_factory.cpp -o $(BUILD)/battery_factory.o
 
 $(BUILD)/factory.o: $(SRC)/factory.cpp $(INCLUDE)/factory.h
 	g++ $(CPPFLAGS) -c $(SRC)/factory.cpp -o $(BUILD)/factory.o
-
-#warehouse
-$(BUILD)/warehouse.o: $(BUILD)/car.o $(SRC)/warehouse.cpp $(INCLUDE)/warehouse.h 
-	g++ $(CPPFLAGS) -c $(SRC)/warehouse.cpp -o $(BUILD)/warehouse.o
 
 #car
 $(BUILD)/car.o: $(BUILD)/frame.o $(BUILD)/engine.o $(BUILD)/battery.o $(SRC)/car.cpp $(INCLUDE)/car.h
