@@ -6,7 +6,7 @@
 
 class Warehouse{
 public:
-    Warehouse(){};
+    Warehouse():numOfFrames_(0), numOfEngines_(0), numOfBatteries_(0), numOfCars_(0){};
     ~Warehouse();
 
     void addFrame( Frame* );
@@ -19,11 +19,18 @@ public:
     Battery* getBattery();
     Car* getCar();
 
+    bool enoughPartsToProduceCar();
+
 private:
     std::forward_list<Frame*> frames_;
     std::forward_list<Engine*> engines_;
     std::forward_list<Battery*> batteries_;
     std::forward_list<Car*> cars_;
+
+    int numOfFrames_;
+    int numOfEngines_;
+    int numOfBatteries_;
+    int numOfCars_;
 
     template<class T>
     void clearList_( std::forward_list<T>);

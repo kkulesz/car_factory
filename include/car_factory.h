@@ -2,13 +2,11 @@
 #define _CAR_FACTORY_H_
 
 #include "factory.h"
-#include "frame.h"
-#include "engine.h"
-#include "battery.h"
+#include "car.h"
 
 class CarFactory: public Factory{
 public:
-
+    Car* produce(Frame*, Engine*, Battery*, Car::Colour);
 private:
 };
 #endif

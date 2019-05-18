@@ -9,13 +9,18 @@
 
 class FactoryManager{
 public:
+    void produceFrame();
+    void produceEngine();
+    void produceBattery();
+    void produceAllParts();
+    bool produceCar( Car::Colour );
 
 private:
-    Warehouse itsWarehouse_;
     FrameFactory itsFrameFactory_;
     EngineFactory itsEngineFactory_;
     BatteryFactory itsBatteryFactory_;
     CarFactory itsCarFactory_;
+    Warehouse itsWarehouse_;
 
 };
 

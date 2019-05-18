@@ -4,6 +4,9 @@
 #include "factory.h"
 #include "frame.h"
 class FrameFactory: public Factory{
+public:
+    Frame* produce();
+private:
 
 };
 

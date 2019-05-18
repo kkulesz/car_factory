@@ -4,6 +4,9 @@
 #include "factory.h"
 #include "battery.h"
 class BatteryFactory: public Factory{
+public:
+    Battery* produce();
+private:
 
 };
 
