@@ -1,5 +1,5 @@
-CPPFLAGS := -Wall -g -Iinclude -Isrc -Ilib/SFML/include/
-SFMLLIBS := -lsfml-system -lsfml-window -lsfml-graphics
+CPPFLAGS := -std=c++11 -Wall -g -Iinclude -Isrc -Ilib
+SFMLLIBS := -lsfml-graphics -lsfml-window -lsfml-system
 INCLUDE := include
 SRC := src
 BIN := bin
@@ -10,7 +10,7 @@ TEST:= test
 .DEFAULT_GOAL :=  $(BIN)/main
 
 $(BIN)/main: $(BUILD) $(BIN) $(BUILD)/main.o
-	g++ $(BUILD)/part.o $(BUILD)/battery.o $(BUILD)/engine.o $(BUILD)/frame.o $(BUILD)/car.o  $(BUILD)/factory.o $(BUILD)/battery_factory.o $(BUILD)/engine_factory.o $(BUILD)/frame_factory.o $(BUILD)/car_factory.o $(BUILD)/warehouse.o $(BUILD)/factory_manager.o $(BUILD)/main.o -o $(BIN)/main $(SFMLLIBS)
+	g++ $(BUILD)/part.o $(BUILD)/battery.o $(BUILD)/engine.o $(BUILD)/frame.o $(BUILD)/car.o  $(BUILD)/factory.o $(BUILD)/battery_factory.o $(BUILD)/engine_factory.o $(BUILD)/frame_factory.o $(BUILD)/car_factory.o $(BUILD)/warehouse.o $(BUILD)/factory_manager.o $(BUILD)/button.o $(BUILD)/gui.o $(BUILD)/main.o -o $(BIN)/main $(SFMLLIBS)
 #directories
 $(BUILD):
 	$(MKDIR_P) $(BUILD)
@@ -19,8 +19,16 @@ $(BIN):
 	$(MKDIR_P) $(BIN)
 
 #main
-$(BUILD)/main.o: $(SRC)/main.cpp $(BUILD)/factory_manager.o
+$(BUILD)/main.o: $(SRC)/main.cpp $(BUILD)/gui.o
 	g++ $(CPPFLAGS) -c $(SRC)/main.cpp -o $(BUILD)/main.o
+
+#interface
+$(BUILD)/gui.o: $(SRC)/gui.cpp $(INCLUDE)/gui.h $(BUILD)/factory_manager.o $(BUILD)/button.o
+	g++ $(CPPFLAGS) -c $(SRC)/gui.cpp -o $(BUILD)/gui.o
+
+$(BUILD)/button.o: $(SRC)/button.cpp $(INCLUDE)/button.h
+	g++ $(CPPFLAGS) -c $(SRC)/button.cpp -o $(BUILD)/button.o
+
 #manager
 $(BUILD)/factory_manager.o: $(BUILD)/battery_factory.o $(BUILD)/engine_factory.o $(BUILD)/frame_factory.o $(BUILD)/car_factory.o $(BUILD)/warehouse.o $(SRC)/factory_manager.cpp $(INCLUDE)/factory_manager.h
 	g++ $(CPPFLAGS) -c $(SRC)/factory_manager.cpp -o $(BUILD)/factory_manager.o
@@ -61,6 +69,14 @@ $(BUILD)/battery.o: $(BUILD)/part.o $(SRC)/battery.cpp $(INCLUDE)/battery.h
 
 $(BUILD)/part.o: $(SRC)/part.cpp $(INCLUDE)/part.h
 	g++ $(CPPFLAGS) -c $(SRC)/part.cpp -o $(BUILD)/part.o
+
+
+################TEST###################
+test: $(BUILD) $(BIN) $(BUILD)/test.o
+	g++ $(BUILD)/part.o $(BUILD)/battery.o $(BUILD)/engine.o $(BUILD)/frame.o $(BUILD)/car.o  $(BUILD)/factory.o $(BUILD)/battery_factory.o $(BUILD)/engine_factory.o $(BUILD)/frame_factory.o $(BUILD)/car_factory.o $(BUILD)/warehouse.o $(BUILD)/factory_manager.o $(BUILD)/test.o -o $(BIN)/test
+
+$(BUILD)/test.o: $(TEST)/test.cpp $(BUILD)/factory_manager.o
+	g++ $(CPPFLAGS)  -c $(TEST)/test.cpp -o $(BUILD)/test.o
 
 
 #####CLEAN#####
