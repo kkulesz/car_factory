@@ -13,8 +13,13 @@ public:
     void produceEngine();
     void produceBattery();
     void produceAllParts();
-    bool produceCar( Car::Colour );//returns true if car is created,which depends on parts availability
-    void getNumbers( int& carNumber, int& frameNumber,int& engineNumber , int& batteryNumber);//changes given ints to number of parts in itsWarehause
+    bool produceCar( );//returns true if car is created,which depends on parts availability
+    //void getNumbers( int& carNumber, int& frameNumber,int& engineNumber , int& batteryNumber);//changes given ints to number of parts in itsWarehause
+
+    int getEngineNumber(){ return itsWarehouse_.getEngineNumber(); };
+    int getFrameNumber(){ return itsWarehouse_.getFrameNumber(); };
+    int getBatteryNumber(){ return itsWarehouse_.getBatteryNumber(); };
+    int getCarNumber(){ return itsWarehouse_.getCarNumber(); };
 
 private:
     FrameFactory itsFrameFactory_;

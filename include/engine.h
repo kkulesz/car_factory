@@ -4,7 +4,7 @@
 #include "part.h"
 class Engine: public Part{
 public:
-
+    std::string getName() { return "Engine"; }
 private:
 
 };

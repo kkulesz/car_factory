@@ -4,7 +4,7 @@
 #include "part.h"
 class Frame: public Part{
 public:
-
+    std::string getName() { return "Frame"; }
 private:
 
 };

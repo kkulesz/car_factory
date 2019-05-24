@@ -7,15 +7,12 @@
 
 class Car{
 public:
-    enum Colour{RED, GREEN, BLUE, WHITE, BLACK};
-
-    Car(Frame*, Engine*, Battery*, Colour);
+    Car(Frame*, Engine*, Battery*);
     ~Car();
 private:
     Frame* itsFrame_;
     Engine* itsEngine_;
     Battery* itsBattery_;
-    Colour itsColour_;
 };
 
 #endif

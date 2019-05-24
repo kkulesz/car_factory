@@ -6,7 +6,7 @@
 
 class CarFactory: public Factory{
 public:
-    Car* produce(Frame*, Engine*, Battery*, Car::Colour);
+    Car* produce(Frame*, Engine*, Battery*);
 private:
 };
 #endif

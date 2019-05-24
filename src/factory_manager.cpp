@@ -17,22 +17,23 @@ void FactoryManager::produceAllParts(){
     produceBattery();
 }
 
-bool FactoryManager::produceCar( Car::Colour carColour ){
+bool FactoryManager::produceCar( ){
     if( itsWarehouse_.enoughPartsToProduceCar() ){
         Frame* newFrame = itsWarehouse_.getFrame();
         Engine* newEngine = itsWarehouse_.getEngine();
         Battery* newBattery = itsWarehouse_.getBattery();
-        Car* newCar = itsCarFactory_.produce(newFrame, newEngine, newBattery, carColour);
+        Car* newCar = itsCarFactory_.produce(newFrame, newEngine, newBattery);
         itsWarehouse_.addCar(newCar);
         return true;
     }else{
         return false;
     }
 }
-
+/*
 void FactoryManager::getNumbers( int& carNumber, int& frameNumber, int& engineNumber, int& batteryNumber ){
     carNumber = itsWarehouse_.getCarNumber();
     frameNumber = itsWarehouse_.getFrameNumber();
     engineNumber = itsWarehouse_.getEngineNumber();
     batteryNumber = itsWarehouse_.getBatteryNumer();
 }
+*/

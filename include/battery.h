@@ -4,7 +4,7 @@
 #include "part.h"
 class Battery: public Part{
 public:
-
+    std::string getName() { return "Battery"; }
 private:
 
 };
