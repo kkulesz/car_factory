@@ -68,10 +68,10 @@ void Interface::setButtons_(){
     float XPosition = 20.0f;
     float YPosition = 20.0f;
     sf::Vector2f buttonSize( 150.0f, 150.0f );
-    carFactoryButton_ = new Button( "src/images/1.jpg", buttonSize, sf::Vector2f( XPosition, YPosition + 0.0f ));
-    frameFactoryButton_ = new Button( "src/images/2.jpeg", buttonSize, sf::Vector2f( XPosition, YPosition + 190.0f));
-    engineFactoryButton_ = new Button( "src/images/3.jpeg", buttonSize, sf::Vector2f( XPosition, YPosition + 380.0f));
-    batteryFactoryButton_ = new Button( "src/images/4.jpeg", buttonSize, sf::Vector2f( XPosition, YPosition + 570.0f));
+    carFactoryButton_ = new Button( "src/images/car.jpg", buttonSize, sf::Vector2f( XPosition, YPosition + 0.0f ));
+    frameFactoryButton_ = new Button( "src/images/frame.jpg", buttonSize, sf::Vector2f( XPosition, YPosition + 190.0f));
+    engineFactoryButton_ = new Button( "src/images/engine.jpeg", buttonSize, sf::Vector2f( XPosition, YPosition + 380.0f));
+    batteryFactoryButton_ = new Button( "src/images/battery.jpg", buttonSize, sf::Vector2f( XPosition, YPosition + 570.0f));
 }
 
 void Interface::drawButtons_(){
