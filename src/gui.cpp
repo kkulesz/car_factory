@@ -8,16 +8,16 @@ Interface::Interface(){
     window_ = new sf::RenderWindow( sf::VideoMode( WIDTH, HEIGHT ), "title", sf::Style::Close | sf::Style::Titlebar);
 
     font_.loadFromFile( "src/fonts/SulphurPoint-Regular.otf" );
-    stateMessege_.setFont( font_);
-    stateMessege_.setPosition( sf::Vector2f(400.0f, 100.0f) );
-    stateMessege_.setCharacterSize( 100 );
-    stateMessege_.setFillColor( sf::Color(0,0,0) );//BLACK
-    updateStateMessege_();
+    stateMessage_.setFont( font_);
+    stateMessage_.setPosition( sf::Vector2f(400.0f, 100.0f) );
+    stateMessage_.setCharacterSize( 100 );
+    stateMessage_.setFillColor( sf::Color(0,0,0) );//BLACK
+    updateStateMessage_();
 
-    actionMessege_.setFont( font_ );
-    actionMessege_.setPosition( sf::Vector2f( 200.0f, 20.0f) );
-    actionMessege_.setCharacterSize( 40 );
-    actionMessege_.setFillColor( sf::Color(0,0,0) );//BLACK
+    actionMessage_.setFont( font_ );
+    actionMessage_.setPosition( sf::Vector2f( 200.0f, 20.0f) );
+    actionMessage_.setCharacterSize( 40 );
+    actionMessage_.setFillColor( sf::Color(0,0,0) );//BLACK
 
     setButtons_();
 }
@@ -84,61 +84,61 @@ void Interface::drawButtons_(){
 }
 
 void Interface::drawTexts_(){
-    window_->draw( stateMessege_ );
-    window_->draw( actionMessege_ );
+    window_->draw( stateMessage_ );
+    window_->draw( actionMessage_ );
 }
 
 void Interface::mousePressedEvents_(){
-    setActionMessege_("");//clears actionMessege_
+    setActionMessage_("");//clears actionMessege_
     checkButtons_();
 }
 
 void Interface::checkButtons_(){
     if( carFactoryButton_->isClicked( window_ ) ){
-        actionOfCarFactoryButton();
+        actionOfCarFactoryButton_();
     }
     else if( frameFactoryButton_->isClicked( window_ ) ){
-        actionOfFrameFactoryButton();
+        actionOfFrameFactoryButton_();
     }
     else if( engineFactoryButton_->isClicked( window_ ) ){
-        actionOfEngineFactoryButton();
+        actionOfEngineFactoryButton_();
     }
     else if( batteryFactoryButton_->isClicked( window_ ) ){
-        actionOfBatteryFactoryButton();
+        actionOfBatteryFactoryButton_();
     }
 
 }
 
-void Interface::actionOfCarFactoryButton(){
+void Interface::actionOfCarFactoryButton_(){
     if( factoryManager_.produceCar() ){
-        setActionMessege_( "Car produced" );
-        carFactoryButton_->setColor( sf::Color::Green );
+        setActionMessage_( "Car produced" );
+        carFactoryButton_->setColor( acceptanceColor_ );
     }else{
-        setActionMessege_( "Not enough parts to produce a car.");
-        carFactoryButton_->setColor( sf::Color::Red );
+        setActionMessage_( "Not enough parts to produce a car.");
+        carFactoryButton_->setColor( denyColor_ );
     }
 }
 
-void Interface::actionOfFrameFactoryButton(){
-    frameFactoryButton_->setColor( sf::Color::Green );
+void Interface::actionOfFrameFactoryButton_(){
+    frameFactoryButton_->setColor( acceptanceColor_ );
     factoryManager_.produceFrame();
-    setActionMessege_( "Frame produced" );
+    setActionMessage_( "Frame produced" );
 }
 
-void Interface::actionOfEngineFactoryButton(){
-    engineFactoryButton_->setColor( sf::Color::Green );
+void Interface::actionOfEngineFactoryButton_(){
+    engineFactoryButton_->setColor( acceptanceColor_ );
     factoryManager_.produceEngine();
-    setActionMessege_( "Engine produced" );
+    setActionMessage_( "Engine produced" );
 }
 
-void Interface::actionOfBatteryFactoryButton(){
-    batteryFactoryButton_->setColor( sf::Color::Green );
+void Interface::actionOfBatteryFactoryButton_(){
+    batteryFactoryButton_->setColor( acceptanceColor_ );
     factoryManager_.produceBattery();
-    setActionMessege_( "Battery produced" );
+    setActionMessage_( "Battery produced" );
 }
 
 void Interface::mouseReleasedEvents_(){
-    updateStateMessege_();
+    updateStateMessage_();
     resetColors_();
 }
 
@@ -149,14 +149,15 @@ void Interface::resetColors_(){
     batteryFactoryButton_->setColor( sf::Color(255,255,255) );
 }
 
-void Interface::updateStateMessege_(){
+
+void Interface::updateStateMessage_(){
     std::string stateString = "Cars: " + std::to_string( factoryManager_.getCarNumber() ) +
                             "\nFrames: " + std::to_string( factoryManager_.getFrameNumber() ) +
                             "\nEngines: " + std::to_string ( factoryManager_.getEngineNumber() ) +
                             "\nBatteries: " + std::to_string ( factoryManager_.getBatteryNumber() );
-    stateMessege_.setString( stateString );
+    stateMessage_.setString( stateString );
 }
 
-void Interface::setActionMessege_( std::string newMessege){
-    actionMessege_.setString( newMessege );
+void Interface::setActionMessage_( std::string newMessage){
+    actionMessage_.setString( newMessage );
 }

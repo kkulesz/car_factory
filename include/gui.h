@@ -13,6 +13,10 @@ private:
     sf::RenderWindow* window_;
     sf::Font font_;
 
+    /* colors of buttons */
+    sf::Color acceptanceColor_ = sf::Color::Green;
+    sf::Color denyColor_ = sf::Color::Red;
+
     FactoryManager factoryManager_;
 
     Button* carFactoryButton_;
@@ -20,8 +24,8 @@ private:
     Button* engineFactoryButton_;
     Button* batteryFactoryButton_;
 
-    sf::Text stateMessege_;
-    sf::Text actionMessege_;
+    sf::Text stateMessage_;
+    sf::Text actionMessage_;
 
     void drawButtons_();
     /* draws stateMessege_ and actionMessege_ */
@@ -37,14 +41,14 @@ private:
     /* resets all buttons fill color to black*/
     void resetColors_();
     /* updates stateMessege_ */
-    void updateStateMessege_();
+    void updateStateMessage_();
 
-    void setActionMessege_( std::string newMessege );
+    void setActionMessage_( std::string newMessege );
 
-    void actionOfCarFactoryButton();
-    void actionOfFrameFactoryButton();
-    void actionOfEngineFactoryButton();
-    void actionOfBatteryFactoryButton();
+    void actionOfCarFactoryButton_();
+    void actionOfFrameFactoryButton_();
+    void actionOfEngineFactoryButton_();
+    void actionOfBatteryFactoryButton_();
 
 
 };
