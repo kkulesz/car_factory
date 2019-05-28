@@ -11,11 +11,13 @@ Interface::Interface(){
     stateMessege_.setFont( font_);
     stateMessege_.setPosition( sf::Vector2f(400.0f, 100.0f) );
     stateMessege_.setCharacterSize( 100 );
+    stateMessege_.setFillColor( sf::Color(0,0,0) );//BLACK
     updateStateMessege_();
 
     actionMessege_.setFont( font_ );
     actionMessege_.setPosition( sf::Vector2f( 200.0f, 20.0f) );
     actionMessege_.setCharacterSize( 40 );
+    actionMessege_.setFillColor( sf::Color(0,0,0) );//BLACK
 
     setButtons_();
 }
@@ -57,7 +59,7 @@ void Interface::mainLoop(){
                 break;
             }
         }
-        window_->clear( sf::Color(150,150,150) );// GREY
+        window_->clear( sf::Color(255,255,255) );// WHITE
         this->drawButtons_();
         this->drawTexts_();
         window_->display();
@@ -68,7 +70,7 @@ void Interface::setButtons_(){
     float XPosition = 20.0f;
     float YPosition = 20.0f;
     sf::Vector2f buttonSize( 150.0f, 150.0f );
-    carFactoryButton_ = new Button( "src/images/car.jpg", buttonSize, sf::Vector2f( XPosition, YPosition + 0.0f ));
+    carFactoryButton_ = new Button( "src/images/car.jpeg", buttonSize, sf::Vector2f( XPosition, YPosition + 0.0f ));
     frameFactoryButton_ = new Button( "src/images/frame.jpg", buttonSize, sf::Vector2f( XPosition, YPosition + 190.0f));
     engineFactoryButton_ = new Button( "src/images/engine.jpeg", buttonSize, sf::Vector2f( XPosition, YPosition + 380.0f));
     batteryFactoryButton_ = new Button( "src/images/battery.jpg", buttonSize, sf::Vector2f( XPosition, YPosition + 570.0f));
