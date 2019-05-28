@@ -59,7 +59,7 @@ void Interface::mainLoop(){
                 break;
             }
         }
-        window_->clear( sf::Color(255,255,255) );// WHITE
+        window_->clear( sf::Color(150,150,150) );// WHITE
         this->drawButtons_();
         this->drawTexts_();
         window_->display();

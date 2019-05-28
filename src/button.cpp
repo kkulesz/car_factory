@@ -8,6 +8,8 @@ Button::Button( const std::string texturePath, const sf::Vector2f size, sf::Vect
     texture_ = new sf::Texture;
     texture_->loadFromFile( texturePath );
     shape_->setTexture( texture_ );
+    shape_->setOutlineThickness(-5);
+    shape_->setOutlineColor( sf::Color::Black );
 }
 
 Button::~Button(){
