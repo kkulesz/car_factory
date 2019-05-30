@@ -34,13 +34,13 @@ private:
     void setButtons_();
     /* calls all MousePressed events*/
     void mousePressedEvents_();
-    /* chooses specyfic function  */
+    /* chooses specyfic function depending on which button has been pressed */
     void checkButtons_();
     /* calls all MouseReleased enevts*/
     void mouseReleasedEvents_();
-    /* resets all buttons fill color to black*/
+    /* resets all buttons fill color to white*/
     void resetColors_();
-    /* updates stateMessege_ */
+    /* updates stateMessege_ which prints state of the Warehouse*/
     void updateStateMessage_();
 
     void setActionMessage_( std::string newMessege );
