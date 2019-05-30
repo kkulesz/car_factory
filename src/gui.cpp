@@ -59,7 +59,7 @@ void Interface::mainLoop(){
                 break;
             }
         }
-        window_->clear( sf::Color(150,150,150) );// WHITE
+        window_->clear( sf::Color(150,150,150) );// GREY
         this->drawButtons_();
         this->drawTexts_();
         window_->display();
@@ -91,6 +91,7 @@ void Interface::drawTexts_(){
 void Interface::mousePressedEvents_(){
     setActionMessage_("");//clears actionMessege_
     checkButtons_();
+    updateStateMessage_();
 }
 
 void Interface::checkButtons_(){
@@ -110,10 +111,10 @@ void Interface::checkButtons_(){
 }
 
 void Interface::actionOfCarFactoryButton_(){
-    if( factoryManager_.produceCar() ){
+    if( factoryManager_.produceCar() ){//if every part is available in warehouse
         setActionMessage_( "Car produced" );
         carFactoryButton_->setColor( acceptanceColor_ );
-    }else{
+    }else{//if isnt
         setActionMessage_( "Not enough parts to produce a car.");
         carFactoryButton_->setColor( denyColor_ );
     }
@@ -138,7 +139,7 @@ void Interface::actionOfBatteryFactoryButton_(){
 }
 
 void Interface::mouseReleasedEvents_(){
-    updateStateMessage_();
+    //updateStateMessage_();
     resetColors_();
 }
 

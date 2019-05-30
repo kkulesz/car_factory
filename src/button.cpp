@@ -23,6 +23,7 @@ void Button::draw( sf::RenderWindow* window){
 
 bool Button::isClicked( sf::RenderWindow* window){
     sf::Vector2i mousePosition = sf::Mouse::getPosition( *window );
+    //checks if mouse is between corners of the shape
     return ( mousePosition.x > position_.x ) && ( mousePosition.x < position_.x + size_.x ) &&
             (  mousePosition.y > position_.y ) && ( mousePosition.y < position_.y + size_.y );
 }
